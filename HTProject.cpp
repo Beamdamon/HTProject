@@ -24,6 +24,12 @@ HT::HT(int b)
     hashTable = new list<int>[numIndexes];
 }
 
+void HT::insertItem(int key)
+{
+    int index = hash(key);
+    hashTable[index].push_back(key);
+}
+
 int main()
 {
 
