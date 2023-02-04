@@ -51,6 +51,17 @@ void HT::deleteItem(int key)
         hashTable[index].erase(i);
 }
 
+void HT::display()
+{
+    // Loops through to the end of the list and displays the index and key
+    for (int i = 0; i < numIndexes; i++)
+    {
+        cout << i;
+        for (auto x : hashTable[i])
+            cout << " --> " << x;
+        cout << endl;
+    }
+}
 
 
 int main()
