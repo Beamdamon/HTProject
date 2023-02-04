@@ -5,7 +5,7 @@ using namespace std;
 class HT
 {
     int numIndexes;
-    list<int>* hashT;
+    list<int>* hashTable;
 
 public:
     HT(int V); //Constructor
@@ -17,6 +17,12 @@ public:
         return (x % 598); // Prime Number 
     }
 };
+
+HT::HT(int b)
+{
+    this->numIndexes = b;
+    hashTable = new list<int>[numIndexes];
+}
 
 int main()
 {
