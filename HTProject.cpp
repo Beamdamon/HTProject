@@ -1,6 +1,9 @@
 #include <iostream>
 #include <List>
+#include <Chrono>
+
 using namespace std;
+using namespace std::chrono;
 
 class HT
 {
@@ -15,7 +18,7 @@ public:
     void display();
     int hash(int x)
     {
-        return (x % 101); // Prime Number Modulo
+        return (x % 97); // Prime Number Modulo
     }
 };
 
@@ -66,7 +69,7 @@ void HT::retrieveItem(int key)
             break;
     }
 
-    // Deletes the index
+    // Lets you know if the key is in the table or not
     if (i != hashTable[index].end())
         cout << key << " Is in the table at index: " << index;
 
@@ -99,13 +102,21 @@ int main()
     HT h(100);
 
     //Adds 1-100 to the hash table
+    auto start = high_resolution_clock::now();
+
     for (int i = 0; i < 100; i++)
     {
         h.insertItem(rand());
     }
 
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    cout << endl << duration.count() << " Microseconds taken" << endl;
+
     h.display();
 
+    //Main Menu and Display, Insert, Delete, and Retrieve options
     while (key != -1)
     {
         cout << endl << "Menu" << endl;
@@ -120,8 +131,16 @@ int main()
         {
         case 1:
         {
+            auto start = high_resolution_clock::now();
+
             cout << endl;
             h.display();
+
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(stop - start);
+
+            cout << endl << duration.count() << " Microseconds taken" << endl;
+
             break;
         }
         case 2:
@@ -136,8 +155,17 @@ int main()
         {
             cout << endl << "Input the number that you want to delete.\n";
             cin >> key;
+
+            auto start = high_resolution_clock::now();
+
             h.deleteItem(key);
             cout << endl << key << " was deleted.";
+
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(stop - start);
+
+            cout << endl << duration.count() << " Microseconds taken" << endl;
+
             break;
         }
         case 4:
